@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:ignore="RtlHardcoded">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/title_article_details_margins"
+            android:layout_marginTop="@dimen/title_article_details_margins"
+            android:gravity="center_horizontal"
+            android:text="Freddie Mercury"/>
+
+
+        <TextView
+            android:id="@+id/tags_detail"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/simple_text_margin"
+            android:text="Tags"/>
+
+
+        <ImageView
+            android:id="@+id/image_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/placeholder"
+            android:contentDescription="@null" />
+
+        <LinearLayout
+            android:id="@+id/authorsandweb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/simple_text_margin"
+            android:layout_marginLeft="@dimen/simple_text_margin"
+            android:layout_marginRight="@dimen/simple_text_margin"
+            android:layout_marginTop="@dimen/simple_text_margin">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:text="Authors: "/>
+                <TextView
+                    android:id="@+id/authors_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/simple_text_margin"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:text="www.websiteX.com.br"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:text="WebSite: "/>
+
+                <TextView
+                    android:id="@+id/website_detail"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="web"
+                    android:text="www.websiteX.com.br"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:text="Date: "/>
+                <TextView
+                    android:id="@+id/date_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/simple_text_margin"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:text="www.websiteX.com.br"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/description_margin_bottom"
+            android:layout_marginLeft="@dimen/description_margin_left"
+            android:layout_marginRight="@dimen/description_margin_right"
+            android:layout_marginTop="@dimen/description_margin_top">
+        </TextView>
+
+    </LinearLayout>
+
+</ScrollView>
