@@ -51,7 +51,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
     public int getItemCount() {
         return mArticleList.size();
     }
-    
+
 
     /*Creates the viewHolders based in the read state. If the article is read the layout used
     *is different(Still not implemented, needs a new layout)*/

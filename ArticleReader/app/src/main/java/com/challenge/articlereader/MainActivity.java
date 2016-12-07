@@ -8,6 +8,9 @@ import android.net.NetworkInfo;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -23,11 +26,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity implements DownloadListener {
+public class MainActivity extends AppCompatActivity implements ArticleAdapter.Interface, DownloadListener {
 
     Realm mRealm;
     ProgressDialog mProgressDialog;
-
+    ListFragment mListFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +84,58 @@ public class MainActivity extends AppCompatActivity implements DownloadListener 
                 mRealm.commitTransaction();
             }
         }
+    }
+
+
+    @Override
+    public void onArticleClicked(Article article) {
+        mRealm.beginTransaction();
+        article.setRead(true);
+        mRealm.commitTransaction();
+        final ArticleFragment detailsFragment =
+                ArticleFragment.newInstance(article);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.root_layout, detailsFragment, "articleDetails")
+                .addToBackStack(null)
+                .commit();
+
+    }
+
+    @Override
+    public void onArticleSelected(final Article article, final View v, final Context context){
+        //Creating the instance of PopupMenu
+        PopupMenu popup = new PopupMenu(context, v);
+        //Inflating the Popup using xml file
+        if(article.getReadState()) {
+            popup.getMenuInflater().inflate(R.menu.popup_menu_read, popup.getMenu());
+        }
+        else{
+            popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+        }
+
+        popup.show();//showing popup menu
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(context,"You Clicked : " + item.getTitle(),Toast.LENGTH_SHORT).show();
+                if(article.getReadState()) {
+                    mRealm.beginTransaction();
+                    article.setRead(false);
+                    mRealm.commitTransaction();
+                }
+                else{
+                    mRealm.beginTransaction();
+                    article.setRead(true);
+                    mRealm.commitTransaction();
+                }
+
+                getSupportFragmentManager().beginTransaction().detach(mListFragment).commit();
+                getSupportFragmentManager().beginTransaction().attach(mListFragment).commit();
+
+                return true;
+            }
+        });
     }
 
 
