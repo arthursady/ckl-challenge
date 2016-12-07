@@ -7,36 +7,34 @@ import io.realm.RealmObject;
  */
 
 public class Tags extends RealmObject {
+
+    /*JSON model converted*/
     private Integer id;
     private String label;
 
     public Tags(){
     }
+
+    /*############################################################################################*/
+    /*Getters*/
     public Integer getId() {
         return id;
     }
 
-    /**
-     * @param id The id
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    /**
-     * @return The label
-     */
     public String getLabel() {
         return label;
     }
 
-    /**
-     * @param label The label
-     */
-    public void setLabel(String label) {
-        this.label = label;
+    /*############################################################################################*/
+    /*Setters*/
 
+    public void setId(Integer id) {
+        this.id = id;
     }
+
+    public void setLabel(String label) {this.label = label;}
+
+    
     @Override
     public String toString() {
         return label;
