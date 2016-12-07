@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Article Reader</string>
+    <string name="title_tag">Title:&#160;</string>
+    <string name="authors_tag">Authors:&#160;</string>
+    <string name="website_tag">Website:&#160;</string>
+    <string name="date_tag">Date:&#160;</string>
 </resources>
