@@ -62,6 +62,9 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
 
 
 
+
+
+    /*##############################            Interfaces         ###############################*/
     /*Check the downloaded info with the local DB and insert the new items*/
     @Override
     public void downloadComplete(ArrayList<Article> articles) {
@@ -84,9 +87,21 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
                 mRealm.commitTransaction();
             }
         }
+
+        ArrayList<Article>dbList=new ArrayList<Article>();
+        RealmResults realmResults=mRealm.where(Article.class).findAll();
+        dbList.addAll(mRealm.where(Article.class).findAll().subList(0,realmResults.size()));
+        showListFragment(dbList);
+        if (mProgressDialog != null) {
+            mProgressDialog.hide();
+        }
     }
 
 
+
+
+    /*When the article in the list is clicked, an articles detail fragment is replaced in the
+    * screen */
     @Override
     public void onArticleClicked(Article article) {
         mRealm.beginTransaction();
@@ -94,14 +109,15 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
         mRealm.commitTransaction();
         final ArticleFragment detailsFragment =
                 ArticleFragment.newInstance(article);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.root_layout, detailsFragment, "articleDetails")
-                .addToBackStack(null)
-                .commit();
 
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.root_layout, detailsFragment, "articleDetails")
+                    .addToBackStack(null)
+                    .commit();
     }
-
+    /*When the article is LongClicked, it opens a popup menu that changes depending on the read
+    * status of the List Item*/
     @Override
     public void onArticleSelected(final Article article, final View v, final Context context){
         //Creating the instance of PopupMenu
@@ -116,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
 
         popup.show();//showing popup menu
 
+        /*Set listener for the button of the popup menu and toggles the read state when clicked*/
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
                 Toast.makeText(context,"You Clicked : " + item.getTitle(),Toast.LENGTH_SHORT).show();
@@ -138,6 +155,15 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
         });
     }
 
+    /*#############################         Utility Methods        ###############################*/
+    /*Shows the ListFragment in the activity*/
+    private void showListFragment(ArrayList<Article> articles) {
+        mListFragment = ListFragment.newInstance(articles);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.root_layout,mListFragment , "articleList")
+                    .commit();
+    }
 
     /*Method to verify internet connection*/
     private boolean isNetworkConnected() {
@@ -181,4 +207,6 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
             }
         });
     }
+
+
 }

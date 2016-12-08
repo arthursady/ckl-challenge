@@ -35,6 +35,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         mLayoutInflater = LayoutInflater.from(context);
         mArticleList=List;
         mContext=context;
+        mListener = (Interface) context;
+
     }
 
     /*Gets the viewType based in the Read state variable of the Article*/
