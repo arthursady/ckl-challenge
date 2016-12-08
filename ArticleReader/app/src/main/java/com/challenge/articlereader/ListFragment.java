@@ -63,16 +63,17 @@ public class ListFragment extends Fragment {
     }
 
 
-    /*Changes the configuration to accept a custom toolbar for this Fragment*/
+    /*Indicates this fragment has a personalized toolbar menu*/
     @Override
-    public void onCreate(Bundle bundle){
-        super.onCreate(bundle);
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
     /*Defines wich menu layout to use in the toolbar*/
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
         inflater.inflate(R.menu.menu_main, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }

@@ -26,7 +26,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity implements ArticleAdapter.Interface, DownloadListener {
+public class MainActivity extends AppCompatActivity implements ArticleAdapter.Interface,
+        DownloadListener {
 
     Realm mRealm;
     ProgressDialog mProgressDialog;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
     private final int mSortWebsite=4;
 
 
+    /*Initializes the DB, checks for connection and fetches the URL articles and show the article
+    list or if offline shows the article list already in the DB*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,10 +81,12 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
     }
 
 
+    /*Closes the dataBase when destroing the fragment*/
     @Override
     public void onDestroy(){
         super.onDestroy();
         mRealm.close();
+        mProgressDialog.dismiss();
     }
 
 
@@ -152,9 +157,6 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
             mProgressDialog.hide();
         }
     }
-
-
-
 
     /*When the article in the list is clicked, an articles detail fragment is replaced in the
     * screen */
@@ -250,6 +252,8 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
         return networkInfo != null && networkInfo.isConnected();
     }
 
+
+
     /*Method responsible for the retrofit operation and conversion from the JSON model to the
     * Article model created*/
     private void makeRetrofitCalls() {
@@ -284,6 +288,4 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
             }
         });
     }
-
-
 }
