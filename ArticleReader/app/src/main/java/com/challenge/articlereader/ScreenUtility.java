@@ -12,6 +12,8 @@ public class ScreenUtility {
 
     private double screenSize;
 
+    /*Gets information about the device screen in the creator to be acessed afterwards with the
+    * getScreenSize method*/
     public ScreenUtility(Activity activity) {
         DisplayMetrics dm = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(dm);

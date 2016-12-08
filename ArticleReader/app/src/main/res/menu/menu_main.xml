@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.challenge.androidchallenge.MainActivity"
+    android:title="Menu">
+
+    <item
+        android:id="@+id/sort_by"
+        android:title="Sort By"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/byDate"
+                android:title="@string/sort_by_date">
+            </item>
+            <item
+                android:id="@+id/byTitle"
+                android:title="@string/sort_by_title">
+            </item>
+            <item
+                android:id="@+id/byAuthor"
+                android:title="@string/sort_by_author">
+            </item>
+            <item
+                android:id="@+id/byWebsite"
+                android:title="@string/sort_by_website">
+            </item>
+        </menu>
+    </item>
+</menu>
