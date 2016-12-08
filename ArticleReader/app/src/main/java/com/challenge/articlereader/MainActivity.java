@@ -65,6 +65,15 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
                         public void onClick(DialogInterface dialog, int which) {}
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert).show();
+
+            /*When there are articles in the DB even in offline mode displays the list and enables
+            * reading*/
+            ArrayList<Article>dbList=new ArrayList<Article>();
+            RealmResults realmResults=mRealm.where(Article.class).findAll();
+            if(realmResults.size()>0){
+                dbList.addAll(mRealm.where(Article.class).findAll().subList(0,realmResults.size()));
+                showListFragment(dbList);
+            }
         }
     }
 
