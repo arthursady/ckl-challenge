@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.challenge.androidchallenge.MainActivity"
+    android:title="Popup_Menu">
+
+    <item
+        android:id="@+id/mark_as_read"
+        android:title="Mark as Read"/>
+
+</menu >
