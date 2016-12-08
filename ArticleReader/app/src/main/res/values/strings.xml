@@ -6,6 +6,6 @@
     <string name="date_tag">Date:&#160;</string>
     <string name="sort_by_date">Date</string>
     <string name="sort_by_title">Title</string>
-    <string name="sort_by_author">Date</string>
-    <string name="sort_by_website">Date</string>
+    <string name="sort_by_author">Author</string>
+    <string name="sort_by_website">Website</string>
 </resources>

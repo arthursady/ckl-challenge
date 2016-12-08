@@ -69,11 +69,19 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
     }
 
 
-    /*########################         Tool Bar menu listeners         ###########################*/
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        mRealm.close();
+    }
+
+
+    /*########################         Tool Bar menu listener         ###########################*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
-
+            /*For each case, the list in the ListFragment is re-sorted and the view updated by
+            * detaching and retaching the Fragment*/
             case R.id.byDate:
                 mListFragment.sortList(mSortDate);
                 getSupportFragmentManager().beginTransaction().detach(mListFragment).commit();
@@ -146,14 +154,24 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
         mRealm.beginTransaction();
         article.setRead(true);
         mRealm.commitTransaction();
+
         final ArticleFragment detailsFragment =
                 ArticleFragment.newInstance(article);
-
+        ScreenUtility screen = new ScreenUtility(this);
+        if(screen.getScreenSize() < 7){
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.root_layout, detailsFragment, "articleDetails")
                     .addToBackStack(null)
                     .commit();
+        }else{
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.root_layout,detailsFragment , "articleDetails")
+                    .commit();
+            getSupportFragmentManager().beginTransaction().detach(mListFragment).commit();
+            getSupportFragmentManager().beginTransaction().attach(mListFragment).commit();
+        }
     }
     /*When the article is LongClicked, it opens a popup menu that changes depending on the read
     * status of the List Item*/
@@ -198,10 +216,21 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
     /*Shows the ListFragment in the activity*/
     private void showListFragment(ArrayList<Article> articles) {
         mListFragment = ListFragment.newInstance(articles);
+        /*Checks the size of the screen in inches and for screens greater than 7 -> tablets set
+        * a different layout for the fragments*/
+        ScreenUtility screen = new ScreenUtility(this);
+        if(screen.getScreenSize() > 7){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.list_container_largescreens,mListFragment , "articleList")
+                    .commit();
+
+        }else{
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.root_layout,mListFragment , "articleList")
                     .commit();
+        }
     }
 
     /*Method to verify internet connection*/

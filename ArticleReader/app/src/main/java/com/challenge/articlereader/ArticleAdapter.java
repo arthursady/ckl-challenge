@@ -56,7 +56,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
 
     /*Creates the viewHolders based in the read state. If the article is read the layout used
-    *is different(Still not implemented, needs a new layout)*/
+    *is different*/
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 

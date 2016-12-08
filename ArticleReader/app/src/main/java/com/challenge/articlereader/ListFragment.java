@@ -1,6 +1,5 @@
 package com.challenge.articlereader;
 
-import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v4.app.Fragment;
@@ -63,12 +62,15 @@ public class ListFragment extends Fragment {
         }
     }
 
+
+    /*Changes the configuration to accept a custom toolbar for this Fragment*/
     @Override
     public void onCreate(Bundle bundle){
         super.onCreate(bundle);
         setHasOptionsMenu(true);
     }
 
+    /*Defines wich menu layout to use in the toolbar*/
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main, menu);
@@ -87,5 +89,4 @@ public class ListFragment extends Fragment {
         recyclerView.setAdapter(new ArticleAdapter(activity,mArticleList));
         return recyclerView;
     }
-
 }
