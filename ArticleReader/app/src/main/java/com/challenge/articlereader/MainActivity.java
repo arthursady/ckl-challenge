@@ -31,6 +31,14 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
     Realm mRealm;
     ProgressDialog mProgressDialog;
     ListFragment mListFragment;
+
+    /*Set the values for the sort methods identifiers*/
+    private final int mSortDate=1;
+    private final int mSortTitle=2;
+    private final int mSortAuthor=3;
+    private final int mSortWebsite=4;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +69,39 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.In
     }
 
 
+    /*########################         Tool Bar menu listeners         ###########################*/
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
 
+            case R.id.byDate:
+                mListFragment.sortList(mSortDate);
+                getSupportFragmentManager().beginTransaction().detach(mListFragment).commit();
+                getSupportFragmentManager().beginTransaction().attach(mListFragment).commit();
+                return true;
 
+            case R.id.byTitle:
+                mListFragment.sortList(mSortTitle);
+                getSupportFragmentManager().beginTransaction().detach(mListFragment).commit();
+                getSupportFragmentManager().beginTransaction().attach(mListFragment).commit();
+                return true;
+
+            case R.id.byAuthor:
+                mListFragment.sortList(mSortAuthor);
+                getSupportFragmentManager().beginTransaction().detach(mListFragment).commit();
+                getSupportFragmentManager().beginTransaction().attach(mListFragment).commit();
+                return true;
+
+            case R.id.byWebsite:
+                mListFragment.sortList(mSortWebsite);
+                getSupportFragmentManager().beginTransaction().detach(mListFragment).commit();
+                getSupportFragmentManager().beginTransaction().attach(mListFragment).commit();
+                return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     /*##############################            Interfaces         ###############################*/
     /*Check the downloaded info with the local DB and insert the new items*/
