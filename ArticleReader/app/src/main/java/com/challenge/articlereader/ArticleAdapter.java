@@ -64,7 +64,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
                 .inflate(R.layout.list_element, viewGroup, false);
         switch (viewType) {
             case Read:
-                itemView  = mLayoutInflater.inflate(R.layout.list_element, viewGroup, false);
+                itemView  = mLayoutInflater.inflate(R.layout.list_element_read, viewGroup, false);
                 break;
             case Unread:
                 itemView = mLayoutInflater.inflate(R.layout.list_element, viewGroup, false);
